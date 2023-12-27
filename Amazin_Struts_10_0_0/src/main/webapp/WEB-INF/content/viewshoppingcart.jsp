@@ -27,30 +27,25 @@
 		</ul>
 	</nav>
 	<section>
+			<a href="show-books.action">Go Back</a><br /> 
 		<article>
 			<table>
-				<caption>Our catalog:</caption>
+				<caption>Shopping List:</caption>
 				<thead>
 					<tr>
-						<th>Title</th>
-						<th>Author</th>
-						<th>Description</th>
-						<th>Price</th>
+						<th>Id</th>
+						<th>Amount</th>
 					</tr>
 				</thead>
 				<tbody>
-					<s:iterator value="%{#application.booklist}" var="book">
+					<s:iterator var="book" value="%{#session.shoppingcart.list}">
 						<tr>
-							<td><s:property value="#book.title" /></td>
-							<td><s:property value="#book.author" /></td>
-							<td><s:property value="#book.description" /></td>
-							<td><s:property value="#book.price" /> &euro;</td>
+							<td><s:property value="key" /></td>
+							<td><s:property value="value" /></td>
 						</tr>
 					</s:iterator>
 				</tbody>
 			</table>
-			<a href="add-to-shopping-cart-form.action">Add to Shopping Cart</a><br /> 
-			<a href="view-shopping-cart.action">View Shopping Cart</a><br /> 
 		</article>
 	</section>
 	<footer>

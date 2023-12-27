@@ -28,8 +28,11 @@
 	</nav>
 	<section>
 		<article>
-			<s:checkboxlist name="addedBooks" list="%{#application.booklist}"
-				listKey="id" listValue="title" /><s:submit value="Añadir"/>
+			<s:form action="add-to-shopping-cart.action">
+				<s:checkboxlist name="addedBooks" list="%{#application.booklist}"
+					listKey="id" listValue="title" /><s:submit value="Añadir"/>
+
+			</s:form>
 		</article>
 	</section>
 	<footer>

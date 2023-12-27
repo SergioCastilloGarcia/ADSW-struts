@@ -33,7 +33,6 @@
 		<action name="index">
 			<result type="dispatcher">/WEB-INF/content/login-success.jsp</result>
 		</action>
-		
 	</package>
 
 </struts>

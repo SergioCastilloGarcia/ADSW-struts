@@ -12,15 +12,18 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 @ParentPackage(value ="miw.Amazin")
-@Result(name="success", location="/WEB-INF/content/addtoshoppingcart.jsp" )
-public class AddToShoppingCartFormAction extends ActionSupport implements ServletRequestAware  {
+@Result(name="success", location="/WEB-INF/content/viewshoppingcart.jsp" )
+public class ViewShoppingCartAction extends ActionSupport implements ServletRequestAware  {
 	
-	private static final long serialVersionUID = 4173223663812998113L;
+	
+	private static final long serialVersionUID = 2685836764427279681L;
 	Logger logger = LogManager.getLogger(this.getClass());
 	HttpServletRequest request = null;
 
+	@Override
 	public String execute() {
-		logger.debug("Executing AddToShoppingCartFormCommand");
+		logger.debug("Executing ViewShoppingCartAction");
+		
 		return SUCCESS;
 	}
 
@@ -28,8 +31,7 @@ public class AddToShoppingCartFormAction extends ActionSupport implements Servle
 	@Override
 	public void withServletRequest(HttpServletRequest request) {
 		this.request = request;			
-		
 	}
-
+	
 	
 }

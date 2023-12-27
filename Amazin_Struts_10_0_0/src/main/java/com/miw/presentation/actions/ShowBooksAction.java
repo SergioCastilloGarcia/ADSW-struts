@@ -31,8 +31,8 @@ public class ShowBooksAction extends ActionSupport implements ServletRequestAwar
 		try {
 			if ( application.get(BOOKS_LIST) == null )//si no está la lista de libros en el contexto
 			{
+				logger.debug("Context has not books");
 				BookManagerServiceHelper helper = new BookManagerServiceHelper();
-				logger.debug("Getting Books from Service Layer");
 				List<Book> booklist = helper.getBooks();
 				application.put(BOOKS_LIST, booklist);//Añado la lista al contexto
 			}
