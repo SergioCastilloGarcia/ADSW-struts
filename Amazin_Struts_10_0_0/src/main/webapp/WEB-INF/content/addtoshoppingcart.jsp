@@ -28,28 +28,8 @@
 	</nav>
 	<section>
 		<article>
-			<table>
-				<caption>Our catalog:</caption>
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Author</th>
-						<th>Description</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					<s:iterator value="%{#application.booklist}" var="book">
-						<tr>
-							<td><s:property value="#book.title" /></td>
-							<td><s:property value="#book.author" /></td>
-							<td><s:property value="#book.description" /></td>
-							<td><s:property value="#book.price" /> &euro;</td>
-						</tr>
-					</s:iterator>
-				</tbody>
-			</table>
-			<a href="add-to-shopping-cart-form.action">Add to Shopping Cart</a><br /> 
+			<s:checkboxlist name="addedBooks" list="%{#application.booklist}"
+				listKey="id" listValue="title" /><s:submit value="Añadir"/>
 		</article>
 	</section>
 	<footer>
