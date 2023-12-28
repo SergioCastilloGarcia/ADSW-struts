@@ -59,7 +59,8 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 			return "password-error";
 		}
 		UserManagerServiceHelper helper = new UserManagerServiceHelper();
-		//TODO validar que el usuario no exista
+		
+		//valida que el usuario no exista
 		User userExist = helper.getUserByLogin(login.getLogin());
 		if(userExist!=null) {
 			request.setAttribute("mymessage", "El usuario con login '"+login.getLogin()+"' ya existe");
@@ -67,6 +68,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 		}
 		
 		try {
+			//Añade el usuario
 			User user =helper.registerUser(login.getLogin(), login.getPassword());
 			if(user!=null) {
 				return SUCCESS;
@@ -74,6 +76,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 		}catch(Exception e) {
 			logger.error("No se ha podido añadir el usuario: "+e.getMessage());
 		}
+		
 		request.setAttribute("mymessage", "Ha ocurrido un error inexperado");
 		return "register-error";
 	}

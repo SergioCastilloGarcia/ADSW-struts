@@ -35,7 +35,30 @@ public class UserDAO implements UserDataService  {
 		}
 		return user;
 	}
+	@Override
+	public User getUserByLoginAndPassword(String login, String password) throws Exception {
+		User user = null;
+		Dba dba = new Dba();
+		try {
+			EntityManager em = dba.getActiveEm();
+			//Obtengo el usuario por su nombre y contraseña
+			String jpql = "SELECT u FROM User u WHERE u.username = :username and u.password = :password";
+			user = em.createQuery(jpql, User.class)
+		              .setParameter("username", login)
+		              .setParameter("password", password)
+		              .getSingleResult();
 
+			logger.debug("User: "+ user.toString());
+
+		}catch (Exception e) {
+			return null;//Si no hay ningun resultado, devuelvo null;
+		}finally {
+		
+			// 100% sure that the transaction and entity manager will be closed
+			dba.closeEm();
+		}
+		return user;
+	}
 	@Override
 	public User registerUser(String login, String password) throws Exception {
 	    User newUser = new User(login, password, false);

@@ -14,9 +14,15 @@ public class UserManager implements UserManagerService {
 		User user = (new UserDataServiceHelper()).getUserByLogin(login);
 		return user;
 	}
-
+	public User getUserByLoginAndPassword(String login, String password) throws Exception {
+		logger.debug("Asking for user by Login and Password");
+		//Deberiamos encriptar la contraseña, pero como no es el objetivo de esta tarea lo obviare
+		User user = (new UserDataServiceHelper()).getUserByLoginAndPassword(login,password);
+		return user;
+	}
 	public User registerUser(String login, String password) throws Exception {
 		logger.debug("Registing user");
+		//Deberiamos encriptar la contraseña, pero como no es el objetivo de esta tarea lo obviare
 		User user = (new UserDataServiceHelper()).registerUser(login,password);
 		return user;
 	}

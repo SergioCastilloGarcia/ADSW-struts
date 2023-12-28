@@ -12,13 +12,14 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
 import com.miw.model.LoginInfo;
+import com.miw.model.User;
+import com.miw.presentation.user.UserManagerServiceHelper;
 import com.opensymphony.xwork2.ActionSupport;
 
 
 @Results({
 	@Result(name="success", location="counter.action" , type="redirectAction" ),
     @Result(name="login-error", location="/index.jsp"),
-    @Result(name="captcha-error", location="/index.jsp"),
 	
 	//For validation
     @Result(name="input", location="/index.jsp")
@@ -49,15 +50,16 @@ public class LoginAction extends ActionSupport implements ServletRequestAware , 
 	@Override
 	public String execute() throws Exception {
 
-		if ( !login.getCaptcha().equals("23344343"))
+		//Quito el captcha por comodidad
+		/*if ( !login.getCaptcha().equals("23344343"))
 		{
 			request.setAttribute("mymessage", "Captcha is wrong");
 
 			return "captcha-error";
-		}
-		// We do a very basic authentication :).
-		if (login.getLogin().equals("admin") && login.getPassword().equals("amazin"))
-		{
+		}*/
+		UserManagerServiceHelper helper = new UserManagerServiceHelper();
+		User userExist = helper.getUserByLoginAndPassword(login.getLogin(),login.getPassword());
+		if(userExist!=null) {
 			logger.debug("Loggin in!: " + login);
 			session.put("loginInfo", login );
 			return SUCCESS;

@@ -14,7 +14,10 @@ public class UserManagerServiceHelper {
 		logger.debug("Retrieving User from Business Layer");
 		return (Factories.services.getUserManagerService()).getUserByLogin(login);
 	}
-
+	public User getUserByLoginAndPassword(String login, String password) throws Exception {
+		logger.debug("Retrieving User from Business Layer");
+		return (Factories.services.getUserManagerService()).getUserByLoginAndPassword(login,password);
+	}
 	public User registerUser(String login, String password) throws Exception {
 		logger.debug("Adding User from Business Layer");
 		return (Factories.services.getUserManagerService()).registerUser(login, password);
