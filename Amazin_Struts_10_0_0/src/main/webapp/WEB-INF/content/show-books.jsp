@@ -24,6 +24,7 @@
 			<li><a href="index.action">Start</a></li>
 			<li><a href="http://miw.uniovi.es">About</a></li>
 			<li><a href="mailto:dd@email.com">Contact</a></li>
+			<li><a href="logout.action">Logout</a></li>
 		</ul>
 	</nav>
 	<section>
