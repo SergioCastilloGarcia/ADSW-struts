@@ -4,6 +4,7 @@ public class LoginInfo {
 	
 	private String login = null;
 	private String password = null;
+	private String passwordRepeat = null;
 	private String captcha = null;
 	
 	public LoginInfo() {
@@ -27,6 +28,12 @@ public class LoginInfo {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getPasswordRepeat() {
+		return passwordRepeat;
+	}
+	public void setPasswordRepeat(String passwordRepeat) {
+		this.passwordRepeat = passwordRepeat;
 	}
 	@Override
 	public String toString() {

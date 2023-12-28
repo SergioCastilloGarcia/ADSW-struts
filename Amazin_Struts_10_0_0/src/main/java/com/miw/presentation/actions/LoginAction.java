@@ -28,11 +28,11 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 })
 
-@Validations(
+/*@Validations(
 		requiredStrings = {
 					@RequiredStringValidator(type = ValidatorType.SIMPLE, fieldName = "loginInfo.login", message = "You must enter a value for login."),
 					@RequiredStringValidator(type = ValidatorType.SIMPLE, fieldName = "loginInfo.password", message = "You must enter a value for password.") })
-
+*/
 public class LoginAction extends ActionSupport implements ServletRequestAware , SessionAware {
 
 	Logger logger = LogManager.getLogger(this.getClass());
