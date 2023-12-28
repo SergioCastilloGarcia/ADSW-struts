@@ -1,6 +1,7 @@
 package com.miw.presentation.actions;
 
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,15 +11,16 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
 import com.miw.model.LoginInfo;
+import com.miw.model.User;
+import com.miw.presentation.user.UserManagerServiceHelper;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 
 @Results({
 	@Result(name="success", location="/index.jsp" ),
+    @Result(name="user-error", location="/WEB-INF/content/register.jsp"),
     @Result(name="register-error", location="/WEB-INF/content/register.jsp"),
+    @Result(name="password-error", location="/WEB-INF/content/register.jsp"),
 	
 	//For validation
     @Result(name="register", location="/WEB-INF/content/register.jsp")
@@ -54,10 +56,26 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 		{
 			request.setAttribute("mymessage", "Las Passwords no coinciden");
 
-			return "register-error";
+			return "password-error";
 		}
+		UserManagerServiceHelper helper = new UserManagerServiceHelper();
 		//TODO validar que el usuario no exista
-		return SUCCESS;
+		User userExist = helper.getUserByLogin(login.getLogin());
+		if(userExist!=null) {
+			request.setAttribute("mymessage", "El usuario con login '"+login.getLogin()+"' ya existe");
+			return "user-error";
+		}
+		
+		try {
+			User user =helper.registerUser(login.getLogin(), login.getPassword());
+			if(user!=null) {
+				return SUCCESS;
+			}
+		}catch(Exception e) {
+			logger.error("No se ha podido añadir el usuario: "+e.getMessage());
+		}
+		request.setAttribute("mymessage", "Ha ocurrido un error inexperado");
+		return "register-error";
 	}
 	
 	@Override

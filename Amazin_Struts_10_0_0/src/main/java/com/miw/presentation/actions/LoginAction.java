@@ -13,9 +13,6 @@ import org.apache.struts2.convention.annotation.Results;
 
 import com.miw.model.LoginInfo;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 
 @Results({
