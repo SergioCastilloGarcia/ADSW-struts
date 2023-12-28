@@ -21,17 +21,17 @@
 	</nav>
 	<section>
 		<article>
-			<label class="mytitle">Introduce login and password:</label><br />
+			<label class="mytitle">Introduce tus datos:</label><br />
 			<div style="color: red;">
 				<s:property value="#request.mymessage" />
 				<br />
 			</div>
-			<s:form action="login">
+			<s:form action="register">
 				<s:textfield name="loginInfo.login" label="Login" />
 				<s:password name="loginInfo.password" label="Password" />
-				<s:submit />
+				<s:password name="loginInfo.passwordRepeat" label="Repite Password" />
+				<s:submit value="Registrarse"/>
 			</s:form>
-			<a href="register-form.action">Registrarse</a> 
 
 		</article>
 	</section>
