@@ -30,25 +30,11 @@
 	<section>
 			<a href="show-books.action">Go Back</a><br /> 
 		<article>
-			<table>
-				<caption>Shopping List:</caption>
-				<thead>
-					<tr>
-						<th>Nombre</th>
-						<th>Cantidad</th>
-						<th>Precio por unidad</th>
-					</tr>
-				</thead>
-				<tbody>
-					<s:iterator var="book" value="%{#session.shoppingcart.list}">
-						<tr>
-							<td><s:property value="key.title" /></td>
-							<td><s:property value="value" /></td>
-							<td><s:property value="key.price" /> &euro;</td>
-						</tr>
-					</s:iterator>
-				</tbody>
-			</table>
+			<h2>Completar compra</<h2>>
+			<s:form action="buy">
+				<s:textfield name="direccion" label="Direccion" />
+				<s:submit />
+			</s:form>
 			<h3>Price: <s:property value="%{#session.shoppingcart.price}" /> &euro;</h3>
 			<a href="buy-form.action">Comprar</a><br /> 
 		</article>

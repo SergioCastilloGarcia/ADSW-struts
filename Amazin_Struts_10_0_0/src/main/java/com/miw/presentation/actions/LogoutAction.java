@@ -9,6 +9,7 @@ import org.apache.struts2.action.SessionAware;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
+import com.miw.util.Constants;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -30,7 +31,7 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 	public String execute() throws Exception {
 
 		logger.debug("Loggout ");
-		session.put("loginInfo", null );//Con un null sirve para cerrar sesion
+		session.put(Constants.LOGIN_INFO, null );//Con un null sirve para cerrar sesion
 		return SUCCESS;
 	}
 

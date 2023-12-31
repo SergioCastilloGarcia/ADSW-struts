@@ -4,6 +4,8 @@ import org.apache.logging.log4j.*;
 import org.apache.struts2.StrutsStatics;
 
 import com.miw.model.LoginInfo;
+import com.miw.model.User;
+import com.miw.util.Constants;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -32,7 +34,7 @@ public class LoginInterceptor extends AbstractInterceptor implements StrutsStati
 		
 		ActionContext ctx = invocation.getInvocationContext();
 
-		LoginInfo loginInfo = (LoginInfo) ctx.getSession().get("loginInfo");
+		LoginInfo loginInfo = (LoginInfo) ctx.getSession().get(Constants.LOGIN_INFO);
 		String uri = ctx.getName().toLowerCase();
 		
 		// If the user is not logger we redirect to login

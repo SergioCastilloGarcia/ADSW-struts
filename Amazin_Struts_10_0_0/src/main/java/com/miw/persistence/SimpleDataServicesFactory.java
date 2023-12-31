@@ -4,6 +4,8 @@ import org.apache.logging.log4j.*;
 
 import com.miw.persistence.book.BookDAO;
 import com.miw.persistence.book.BookDataService;
+import com.miw.persistence.buy.BuyDAO;
+import com.miw.persistence.buy.BuyDataService;
 import com.miw.persistence.user.UserDAO;
 import com.miw.persistence.user.UserDataService;
 import com.miw.persistence.vat.VATDAO;
@@ -27,5 +29,11 @@ public class SimpleDataServicesFactory implements DataServicesFactory {
 	public UserDataService getUserDataService() {
 		logger.debug("Serving an instance of UserDataService from " + this.getClass().getName());
 		return new UserDAO();
+	}
+
+	@Override
+	public BuyDataService getBuyDataService() {
+		logger.debug("Serving an instance of BuyDataService from " + this.getClass().getName());
+		return new BuyDAO();
 	}
 }

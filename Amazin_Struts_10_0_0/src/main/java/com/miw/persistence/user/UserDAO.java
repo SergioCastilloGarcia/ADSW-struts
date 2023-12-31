@@ -60,8 +60,7 @@ public class UserDAO implements UserDataService  {
 		return user;
 	}
 	@Override
-	public User registerUser(String login, String password) throws Exception {
-	    User newUser = new User(login, password, false);
+	public User registerUser(User newUser) throws Exception {
 		Dba dba = new Dba();
 	    try {
 	        EntityManager em = dba.getActiveEm();

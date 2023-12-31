@@ -14,6 +14,7 @@ import org.apache.struts2.convention.annotation.Results;
 import com.miw.model.LoginInfo;
 import com.miw.model.User;
 import com.miw.presentation.user.UserManagerServiceHelper;
+import com.miw.util.Constants;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -61,7 +62,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware , 
 		User userExist = helper.getUserByLoginAndPassword(login.getLogin(),login.getPassword());
 		if(userExist!=null) {
 			logger.debug("Loggin in!: " + login);
-			session.put("loginInfo", login );
+			session.put(Constants.LOGIN_INFO, login );
 			return SUCCESS;
 		}
 		else

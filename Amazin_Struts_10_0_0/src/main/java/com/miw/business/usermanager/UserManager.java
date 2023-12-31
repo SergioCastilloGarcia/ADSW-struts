@@ -23,7 +23,8 @@ public class UserManager implements UserManagerService {
 	public User registerUser(String login, String password) throws Exception {
 		logger.debug("Registing user");
 		//Deberiamos encriptar la contraseña, pero como no es el objetivo de esta tarea lo obviare
-		User user = (new UserDataServiceHelper()).registerUser(login,password);
+	    User user = new User(login, password, false);
+		(new UserDataServiceHelper()).registerUser(user);
 		return user;
 	}
 }

@@ -15,6 +15,7 @@ import org.apache.struts2.convention.annotation.Result;
 import com.miw.model.Book;
 import com.miw.model.ShoppingCart;
 import com.miw.presentation.book.BookManagerServiceHelper;
+import com.miw.util.Constants;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -27,19 +28,18 @@ public class AddToShoppingCartAction extends ActionSupport implements ServletReq
 	Logger logger = LogManager.getLogger(this.getClass());
 	HttpServletRequest request = null;
 	private Map<String, Object> session=null;
-    private static final String SHOPPING_CART = "shoppingcart";
     private List<String> addedBooks;
 
 	@Override
 	public String execute() {
 		logger.debug("Executing AddToShoppingCartActionCommand");
 		try {
-			ShoppingCart shoppingCart=(ShoppingCart) session.get(SHOPPING_CART);
+			ShoppingCart shoppingCart=(ShoppingCart) session.get(Constants.SHOPPING_CART);
 			if ( shoppingCart == null )//si no está el carrito de libros en el contexto
 			{
 				logger.debug("Session has not shoppingCart");
 				shoppingCart= new ShoppingCart();
-				session.put(SHOPPING_CART, shoppingCart);//Añado el carrito al contexto
+				session.put(Constants.SHOPPING_CART, shoppingCart);//Añado el carrito al contexto
 			}
 			
 			for (String bookId : addedBooks) {//Añado los nuevos libros

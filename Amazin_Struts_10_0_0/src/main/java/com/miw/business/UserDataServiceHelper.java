@@ -12,7 +12,7 @@ public class UserDataServiceHelper {
 	public User getUserByLoginAndPassword(String login, String password) throws Exception {
 		return (Factories.dataServices.getUserDataService()).getUserByLoginAndPassword(login,password);
 	}
-	public User registerUser(String login, String password) throws Exception {
-		return (Factories.dataServices.getUserDataService()).registerUser(login, password);
+	public User registerUser(User user) throws Exception {
+		return (Factories.dataServices.getUserDataService()).registerUser(user);
 	}
 }

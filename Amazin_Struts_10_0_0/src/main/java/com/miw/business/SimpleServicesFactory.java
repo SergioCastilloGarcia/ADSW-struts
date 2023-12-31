@@ -4,6 +4,8 @@ import org.apache.logging.log4j.*;
 
 import com.miw.business.bookmanager.BookManager;
 import com.miw.business.bookmanager.BookManagerService;
+import com.miw.business.buy.BuyManager;
+import com.miw.business.buy.BuyManagerService;
 import com.miw.business.usermanager.UserManager;
 import com.miw.business.usermanager.UserManagerService;
 
@@ -16,10 +18,12 @@ public class SimpleServicesFactory implements ServicesFactory {
 		return new BookManager();
 	}
 
-	@Override
 	public UserManagerService getUserManagerService() {
 		logger.debug("Serving an instance of UserManagerService from "+this.getClass().getName());
 		return new UserManager();
 	}
-
+	public BuyManagerService getBuyManagerService() {
+		logger.debug("Serving an instance of BuyManagerService from "+this.getClass().getName());
+		return new BuyManager();
+	}
 }
