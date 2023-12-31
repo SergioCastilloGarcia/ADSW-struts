@@ -60,7 +60,6 @@ public class BuyAction extends ActionSupport implements ServletRequestAware , Se
 			//Añade la compra
 			BuyManagerServiceHelper helper = new BuyManagerServiceHelper();
 			Buy buy =helper.addBuy(shoppingCart.getPrice(),direccion,user);
-			System.out.println(buy);
 			if(buy!=null) {
 				session.put(Constants.SHOPPING_CART, new ShoppingCart());//reseteamos el carrito
 				return SUCCESS;

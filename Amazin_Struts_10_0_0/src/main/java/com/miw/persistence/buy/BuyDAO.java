@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.apache.logging.log4j.*;
 
 import com.miw.model.Buy;
+import com.miw.model.User;
 import com.miw.persistence.Dba;
 
 public class BuyDAO implements BuyDataService  {
@@ -61,6 +62,32 @@ public class BuyDAO implements BuyDataService  {
 		return Buy;
 	}
 	@Override
+	public List<Buy> getBuysByUser(User user) throws Exception {
+		List<Buy> resultList = null;
+		Dba dba = new Dba();
+		try {
+			EntityManager em = dba.getActiveEm();
+			//Obtengo el usuario por su nombre
+			String jpql = "SELECT b FROM Buy b WHERE b.user = :user";
+			resultList = em.createQuery(jpql, Buy.class)
+		              .setParameter("user", user)
+		              .getResultList();
+			System.out.println(resultList.size());
+			logger.debug("Result list: "+ resultList.toString());
+			for (Buy next : resultList) {
+				logger.debug("next buy: " + next);
+			}
+
+
+		}catch (Exception e) {
+			return null;//Si no hay ningun resultado, devuelvo null;
+		}finally {
+			// 100% sure that the transaction and entity manager will be closed
+			dba.closeEm();
+		}
+		return resultList;
+	}
+	@Override
 	public List<Buy> getBuys() throws Exception {
 
 		List<Buy> resultList = null;
@@ -73,7 +100,7 @@ public class BuyDAO implements BuyDataService  {
 
 			logger.debug("Result list: "+ resultList.toString());
 			for (Buy next : resultList) {
-				logger.debug("next book: " + next);
+				logger.debug("next buy: " + next);
 			}
 
 		} finally {

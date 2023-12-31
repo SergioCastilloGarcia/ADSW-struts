@@ -15,6 +15,9 @@ public class BuyDataServiceHelper {
 	public Buy getBuyById(int id) throws Exception {
 		return (Factories.dataServices.getBuyDataService()).getBuyById(id);
 	}
+	public List<Buy> getBuysByUser(User userId) throws Exception {
+		return (Factories.dataServices.getBuyDataService()).getBuysByUser(userId);
+	}
 	public List<Buy> getBuys() throws Exception {
 		return (Factories.dataServices.getBuyDataService()).getBuys();
 	}

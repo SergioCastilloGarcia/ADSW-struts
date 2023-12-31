@@ -16,7 +16,10 @@ public class BuyManagerServiceHelper {
 		logger.debug("Adding buy from Business Layer");
 		return (Factories.services.getBuyManagerService()).addBuy(price, direccion, user);
 	}
-
+	public List<Buy> getBuysByLogin(String login) throws Exception {
+		logger.debug("Retrieving Buy from Business Layer");
+		return (Factories.services.getBuyManagerService()).getBuysByLogin(login);
+	}
 	public Buy getBuyById(int id) throws Exception {
 		logger.debug("Retrieving Buy from Business Layer");
 		return (Factories.services.getBuyManagerService()).getBuyById(id);

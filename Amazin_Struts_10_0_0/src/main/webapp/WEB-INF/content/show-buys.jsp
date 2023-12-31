@@ -33,26 +33,22 @@
 				<caption>Our catalog:</caption>
 				<thead>
 					<tr>
-						<th>Title</th>
-						<th>Author</th>
-						<th>Description</th>
-						<th>Price</th>
+						<th>Direccion</th>
+						<th>Precio</th>
+						<th>Estado</th>
 					</tr>
 				</thead>
 				<tbody>
-					<s:iterator value="%{#application.booklist}" var="book">
+					<s:iterator value="#request.buys" var="buy">
 						<tr>
-							<td><s:property value="#book.title" /></td>
-							<td><s:property value="#book.author" /></td>
-							<td><s:property value="#book.description" /></td>
-							<td><s:property value="#book.price" /> &euro;</td>
+							<td><s:property value="#buy.direccion" /></td>
+							<td><s:property value="#buy.price" /> &euro;</td>
+							<td><s:property value="#buy.estado" /></td>
 						</tr>
 					</s:iterator>
 				</tbody>
 			</table>
-			<a href="add-to-shopping-cart-form.action">Añadir al Carrito</a><br /> 
-			<a href="view-shopping-cart.action">Ver Carrito</a><br /> 
-			<a href="show-buys.action">Ver compras</a><br /> 
+			<a href="show-books.action">Go Back</a><br /> 
 		</article>
 	</section>
 	<footer>

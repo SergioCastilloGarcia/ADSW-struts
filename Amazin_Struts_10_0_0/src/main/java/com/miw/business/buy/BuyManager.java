@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.*;
 
 import com.miw.business.BuyDataServiceHelper;
+import com.miw.business.UserDataServiceHelper;
 import com.miw.model.Buy;
 import com.miw.model.User;
 import com.miw.util.BuyConstants;
@@ -25,6 +26,13 @@ public class BuyManager implements BuyManagerService {
 		logger.debug("Asking for buy by id");
 		Buy buy = (new BuyDataServiceHelper()).getBuyById(id);
 		return buy;
+	}
+	@Override
+	public List<Buy> getBuysByLogin(String login) throws Exception {
+		logger.debug("Asking for buy by login");
+		User user= (new UserDataServiceHelper()).getUserByLogin(login);//A traves del nmbre de usuario conseguimos el user
+		List<Buy> buys = (new BuyDataServiceHelper()).getBuysByUser(user);
+		return buys;
 	}
 	@Override
 	public List<Buy> getBuys() throws Exception {
