@@ -17,7 +17,7 @@ public class BookManager implements BookManagerService {
 		
 		// We calculate the final price with the VAT value
 		for (Book b : books) {
-			b.setPrice(b.getBasePrice() * (1 + b.getVat().getValue()));
+			b=setPrice(b);
 		}
 		return books;
 	}
@@ -29,5 +29,18 @@ public class BookManager implements BookManagerService {
 		logger.debug("Applying disccount to "+books.get(number).getTitle());
 		books.get(number).setPrice((double)books.get(number).getPrice()*0.85);
 		return books.get(number);
+	}
+	public Book getBook(String id) throws Exception {
+		try {//Llega la id como string, hay que pasearla a int
+			Book book=new BookDataServiceHelper().getBook(Integer.parseInt(id));
+			book=setPrice(book);
+			return book;
+		}catch(Exception e) {
+			return null;
+		}
+	}
+	public Book setPrice(Book book) {
+		book.setPrice(book.getBasePrice() * (1 + book.getVat().getValue()));
+		return book;
 	}
 }

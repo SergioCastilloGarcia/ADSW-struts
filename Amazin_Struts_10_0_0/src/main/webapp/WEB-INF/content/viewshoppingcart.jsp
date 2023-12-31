@@ -36,17 +36,20 @@
 					<tr>
 						<th>Id</th>
 						<th>Amount</th>
+						<th>Price (Unity)</th>
 					</tr>
 				</thead>
 				<tbody>
 					<s:iterator var="book" value="%{#session.shoppingcart.list}">
 						<tr>
-							<td><s:property value="key" /></td>
+							<td><s:property value="key.title" /></td>
 							<td><s:property value="value" /></td>
+							<td><s:property value="key.price" /> &euro;</td>
 						</tr>
 					</s:iterator>
 				</tbody>
 			</table>
+			<h3>Price: <s:property value="%{#session.shoppingcart.price}" /> &euro;</h3>
 		</article>
 	</section>
 	<footer>

@@ -8,4 +8,5 @@ public interface BookDataService {
 
 	List<Book> getBooks() throws Exception;
 
+	Book getBook(int id) throws Exception;
 }

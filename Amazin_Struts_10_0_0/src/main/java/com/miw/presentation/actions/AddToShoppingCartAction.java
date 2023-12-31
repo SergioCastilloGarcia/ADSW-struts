@@ -12,7 +12,9 @@ import org.apache.struts2.action.SessionAware;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
+import com.miw.model.Book;
 import com.miw.model.ShoppingCart;
+import com.miw.presentation.book.BookManagerServiceHelper;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -41,7 +43,9 @@ public class AddToShoppingCartAction extends ActionSupport implements ServletReq
 			}
 			
 			for (String bookId : addedBooks) {//Añado los nuevos libros
-				shoppingCart.add(bookId);
+				BookManagerServiceHelper helper = new BookManagerServiceHelper();
+				Book book = helper.getBook(bookId);
+				shoppingCart.add(book);
 			}
 			
 		} catch (Exception e) {

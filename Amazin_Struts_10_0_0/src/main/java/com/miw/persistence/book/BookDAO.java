@@ -36,4 +36,25 @@ public class BookDAO implements BookDataService  {
 		// We return the result
 		return resultList;
 	}
+	public Book getBook(int id) throws Exception {
+		Book book = null;
+		Dba dba = new Dba();
+		try {
+			EntityManager em = dba.getActiveEm();
+			//Obtengo el usuario por su nombre
+			String jpql = "SELECT b FROM Book b WHERE b.id = :id";
+			book = em.createQuery(jpql, Book.class)
+		              .setParameter("id", id)
+		              .getSingleResult();
+
+			logger.debug("Book: "+ book);
+
+		}catch (Exception e) {
+			return null;//Si no hay ningun resultado, devuelvo null;
+		}finally {
+			// 100% sure that the transaction and entity manager will be closed
+			dba.closeEm();
+		}
+		return book;
+	}
 }

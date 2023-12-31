@@ -20,5 +20,8 @@ public class BookManagerServiceHelper {
 		logger.debug("Retrieving Special Offer from Business Layer");
 		return (Factories.services.getBookManagerService()).getSpecialOffer();
 	}
-	
+	public Book getBook(String id) throws Exception {
+		logger.debug("Retrieving Book from Business Layer");
+		return (Factories.services.getBookManagerService()).getBook(id);
+	}
 }

@@ -7,5 +7,6 @@ import com.miw.model.Book;
 public interface BookManagerService {
 	public List<Book> getBooks() throws Exception;
 	public Book getSpecialOffer() throws Exception;
+	public Book getBook(String id) throws Exception;
 
 }

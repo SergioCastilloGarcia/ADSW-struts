@@ -2,6 +2,8 @@
 
 package com.miw.model;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -111,4 +113,17 @@ public class Book {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", author=" + author
 				+ ", vat=" + vat + ", basePrice=" + basePrice + ", price=" + price + "]";
 	}
+	//Para poder añadirlo al hashmap
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id == book.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
