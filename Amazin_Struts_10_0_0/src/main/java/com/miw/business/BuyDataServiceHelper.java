@@ -21,4 +21,7 @@ public class BuyDataServiceHelper {
 	public List<Buy> getBuys() throws Exception {
 		return (Factories.dataServices.getBuyDataService()).getBuys();
 	}
+	public Buy updateBuy(Buy buy) throws Exception {
+		return (Factories.dataServices.getBuyDataService()).updateBuy(buy);
+	}
 }

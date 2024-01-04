@@ -111,4 +111,31 @@ public class BuyDAO implements BuyDataService  {
 		// We return the result
 		return resultList;
 	}
+	@Override
+	public Buy updateBuy(Buy buy) throws Exception {
+		Dba dba = new Dba();
+	    try {
+	        EntityManager em = dba.getActiveEm();
+
+	        Buy existingBuy = em.find(Buy.class, buy.getId());
+            // Actualiza los campos relevantes
+            existingBuy.setDireccion(buy.getDireccion());
+            existingBuy.setPrice(buy.getPrice());
+            existingBuy.setEstado(buy.getEstado());
+
+	        logger.debug("Buy updated successfully: " + buy.toString());
+
+	    } catch (Exception e) {
+	        // Si hay algún error, realiza un rollback
+	        if (dba.getActiveEm().getTransaction().isActive()) {
+	            dba.getActiveEm().getTransaction().rollback();
+	        }
+	        throw e;
+	    } finally {
+	        // Asegura que la transacción y el entity manager se cierren
+	        dba.closeEm();
+	    }
+
+	    return buy;
+	}
 }

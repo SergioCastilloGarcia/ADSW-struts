@@ -10,5 +10,6 @@ public interface BuyManagerService {
 	public Buy getBuyById(int id) throws Exception;
 	public List<Buy> getBuysByLogin(String login) throws Exception;
 	public List<Buy> getBuys() throws Exception;
+	public Buy updateBuy(Buy buy) throws Exception;
 
 }

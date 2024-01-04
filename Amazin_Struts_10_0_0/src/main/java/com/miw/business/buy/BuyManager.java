@@ -40,4 +40,10 @@ public class BuyManager implements BuyManagerService {
 		List<Buy> buys = (new BuyDataServiceHelper()).getBuys();
 		return buys;
 	}
+
+	@Override
+	public Buy updateBuy(Buy buy) throws Exception {
+		logger.debug("Updating buy");
+		return (new BuyDataServiceHelper()).updateBuy(buy);
+	}
 }

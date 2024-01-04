@@ -28,6 +28,9 @@ public class BuyManagerServiceHelper {
 		logger.debug("Retrieving Buys from Business Layer");
 		return (Factories.services.getBuyManagerService()).getBuys();
 	}
-	
+	public Buy updateBuy(Buy buy) throws Exception {
+		logger.debug("Retrieving Buys from Business Layer");
+		return (Factories.services.getBuyManagerService()).updateBuy(buy);
+	}
 	
 }

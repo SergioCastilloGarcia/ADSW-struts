@@ -13,4 +13,5 @@ public interface BuyDataService {
 	List<Buy> getBuysByUser(User userId) throws Exception;
 
 	List<Buy> getBuys() throws Exception;
+	Buy updateBuy(Buy buy) throws Exception;
 }
