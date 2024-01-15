@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+<title>Amazin</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<header>
+		<h1 class="header">Amazin.com</h1>
+		<h2 class="centered">
+			Welcome to the <em>smallest</em> online shop in the world!!
+		</h2>
+		<h:messages style="color:blue;margin:8px;" />
+
+	</header>
+	<nav>
+		<ul>
+			<h:form>
+				<li><h:commandLink value="Start"
+						action="#{controller.startAction}" /></li>
+			</h:form>
+			<li><h:outputLink value="http://miw.uniovi.es">About</h:outputLink></li>
+			<li><h:outputLink value="mailto:dd@email.com">Contact</h:outputLink></li>
+		</ul>
+	</nav>
+	<section>
+		<article id="a01">
+			<label class="mytitle">Choose an option:</label><br />
+			<h:form>
+				<h:commandLink value="Show Catalog"
+					action="#{controller.showBooksAction}" />
+				<br />
+				<h:commandLink value="Show Special Offer"
+					action="#{controller.showSpecialOfferAction}" />
+				<br />
+			</h:form>
+
+		</article>
+	</section>
+	<footer>
+		<strong> Master in Web Engineering (miw.uniovi.es).</strong><br /> <em>University
+			of Oviedo </em>
+	</footer>
+</body>
+</html>

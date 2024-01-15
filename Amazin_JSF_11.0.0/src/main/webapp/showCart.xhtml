@@ -1,0 +1,55 @@
+
+<!DOCTYPE html >
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Amazin</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<header>
+		<h1 class="header">Amazin.com</h1>
+		<h2 class="centered">
+			Welcome to the <em>smallest</em> online shop in the world!!
+		</h2>
+	</header>
+	<nav>
+		<ul>
+			<h:form>
+				<li><h:commandLink value="Start" action="#{controller.startAction}" /></li>
+			</h:form>
+			<li><h:outputLink value="http://miw.uniovi.es">About</h:outputLink></li>
+			<li><h:outputLink value="mailto:dd@email.com">Contact</h:outputLink></li>
+		</ul>
+	</nav>
+	<section>
+		<article>
+			<table>
+				<caption>Your cart:</caption>
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Number</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat value="#{controller.shoppingCart.carrito}" var="book">
+						<tr>
+							<td>#{book.key}</td>
+							<td>#{book.value}</td>
+						</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
+		</article>
+	</section>
+	<footer>
+		<p>Visits: #{counter.count}</p>
+		<strong> Master in Web Engineering (miw.uniovi.es).</strong><br /> <em>University
+			of Oviedo </em>
+	</footer>
+</body>
+</html>

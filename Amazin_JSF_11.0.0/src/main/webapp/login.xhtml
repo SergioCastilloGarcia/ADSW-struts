@@ -1,0 +1,50 @@
+<!DOCTYPE html >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Amazin</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<header>
+		<h1 class="header">Amazin.com</h1>
+		<h2 class="centered">
+			Welcome to the <em>smallest</em> online shop in the world!!
+		</h2>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="#">Start</a></li>
+			<li><a href="http://miw.uniovi.es">About</a></li>
+			<li><a href="mailto:dd@email.com">Contact</a></li>
+		</ul>
+	</nav>
+	<section>
+		<article>
+			<label class="mytitle">Introduce login and password:</label><br />
+			<h:form>
+				<h:messages style="color:red;margin:8px;" />
+				<h:inputText id="loginInput" value="#{controller.loginInfo.login}"
+					label="login">
+					<f:validateLength minimum="5" maximum="8" />
+					<f:valueChangeListener
+						type="com.miw.presentation.listeners.LoginFieldListener" />
+				</h:inputText>
+				<h:inputSecret id="passwordInput"
+					value="#{controller.loginInfo.password}" label="password">
+				</h:inputSecret>
+				<h:commandButton value="submit" action="#{controller.login}" />
+				<h:message for="loginInput" style="color:red" />
+				<h:message for="passwordInput" style="color:red" />
+			</h:form>
+		</article>
+	</section>
+	<footer>
+
+		<strong> Master in Web Engineering (miw.uniovi.es).</strong><br /> <em>University
+			of Oviedo </em>
+	</footer>
+</body>
+</html>
