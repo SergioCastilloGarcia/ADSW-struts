@@ -49,5 +49,16 @@ public class BookManagerServiceHelper {
 		logger.debug("Retrieving Special Offer from Business Layer");
 		return bookManagerService.getSpecialOffer();
 	}
-	
+
+	public Book updateBook(Book book) throws Exception {
+		logger.debug("Updating Book from Business Layer");
+		return bookManagerService.updateBook(book);
+	}public Book addBook(Book book) throws Exception {
+		logger.debug("Adding Book from Business Layer");
+		return bookManagerService.addBook(book);
+	}
+	public Book getBookById(int id) throws Exception {
+		logger.debug("Adding Book from Business Layer");
+		return bookManagerService.getBookById(id);
+	}
 }

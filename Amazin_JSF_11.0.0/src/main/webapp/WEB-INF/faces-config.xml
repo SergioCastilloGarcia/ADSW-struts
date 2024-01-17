@@ -82,14 +82,24 @@
 			<from-outcome>success</from-outcome>
 			<to-view-id>/showCart.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{controller.addProcess}</from-action>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/addBooks.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 	<navigation-rule>
 		<from-view-id>/showCart.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{controller.startAction}</from-action>
+			<from-action>#{controller.buyProcess}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{controller.buyProcess}</from-action>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/showCart.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	

@@ -5,13 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.logging.log4j.*;
-import org.apache.openejb.config.rules.CheckRestMethodArePublic;
 
+import com.miw.business.bookmanager.BookManager;
+import com.miw.business.bookmanager.BookManagerService;
 import com.miw.model.Book;
 import com.miw.model.ShoppingCart;
 import com.miw.model.UserBean;
@@ -26,13 +28,19 @@ public class Controller implements Serializable{
 	 */
 	private static final long serialVersionUID = 3757676961917467994L;
 
-	private BookManagerServiceHelper bookManagerServiceHelper = new BookManagerServiceHelper();
+	@Inject
+	private BookManagerServiceHelper bookManagerServiceHelper = null;
 	private ShoppingCart shoppingCart = new ShoppingCart();
-	private HashMap<String, Boolean>checkMap= new HashMap();
+	private HashMap<Book, String>checkMap = new HashMap<Book, String>();
 	Logger logger = LogManager.getLogger(this.getClass());
 
 	private UserBean loginInfo = new UserBean();
 
+	public void setBookManagerServiceHelper(BookManagerServiceHelper bookManagerServiceHelper) {
+		logger.debug("Injecting bookManagerServiceHelper");
+		this.bookManagerServiceHelper = bookManagerServiceHelper;
+	}
+	
 	public UserBean getLoginInfo() {
 		return loginInfo;
 	}
@@ -80,7 +88,7 @@ public class Controller implements Serializable{
 	public String startAction() {
 		return "success";
 	}
-	public HashMap<String, Boolean> getCheckMap() {
+	public HashMap<Book, String> getCheckMap() {
 		return checkMap;
 	}
 	public ShoppingCart getShoppingCart() {
@@ -91,7 +99,7 @@ public class Controller implements Serializable{
 			List<Book> books = bookManagerServiceHelper.getBooks();
 			checkMap.clear();
 			for(Book book:books) {
-				checkMap.put(book.getTitle(), Boolean.FALSE);
+				checkMap.put(book, "0");
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -100,11 +108,47 @@ public class Controller implements Serializable{
 		
 	} 	 	
 	public String addProcess() {
-		for (String title: checkMap.keySet()) {
-			if(checkMap.get(title)) {
-				shoppingCart.add(title);
+		try {
+			for (Book book: checkMap.keySet()) {
+				try {
+					int stock=Integer.parseInt(checkMap.get(book));
+					if(stock >0) {
+						
+						shoppingCart.add(book,stock);
+					}
+				}catch (Exception e) {
+					logger.error(e.getMessage());
+				}
 			}
+			return "success";
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
 		}
-		return "success";
+		return "error";
+	}
+	public String buyProcess() {
+		try {
+			for (Book book: checkMap.keySet()) {
+				try {
+					int stock=Integer.parseInt(checkMap.get(book));
+					if(stock >0) {
+						Book contextBook=bookManagerServiceHelper.getBookById(book.getId());
+						if(contextBook.getStock()>=stock) {
+							contextBook.setStock(contextBook.getStock()-stock);
+							bookManagerServiceHelper.updateBook(contextBook);
+						}
+					}
+				}catch (Exception e) {
+					logger.error(e.getMessage());
+				}
+			}
+			shoppingCart = new ShoppingCart();//resetea el carrito
+			return "success";
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return "error";
 	}
 }

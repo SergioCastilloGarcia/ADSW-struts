@@ -55,4 +55,15 @@ public class BookManager implements BookManagerService {
 		books.get(number).setPrice((double)books.get(number).getPrice()*0.85);
 		return books.get(number);
 	}
+	public Book updateBook(Book book) throws Exception{
+		Book result =bookDataService.updateBook(book);
+		return result;
+	}public Book addBook(Book book) throws Exception{
+		Book result =bookDataService.addBook(book);
+		return result;
+	}public Book getBookById(int id) throws Exception{
+		Book result =bookDataService.getBookById(id);
+		return result;
+	}
+	
 }

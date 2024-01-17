@@ -27,32 +27,31 @@
 	</nav>
 	<section>
 		<article>
-			<table>
-				<caption>Our catalog:</caption>
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Author</th>
-						<th>Description</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					<h:form>
+			<h:form>
+				<table>
+					<caption>Our catalog:</caption>
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Price</th>
+							<th>Stock</th>
+							<th>Number</th>
+						</tr>
+					</thead>
+					<tbody>
 						<ui:repeat value="#{bookManagerServiceHelper.books}" var="book">
 							<tr>
-								<td><h:selectBooleanCheckbox value="#{controller.checkMap[book.title]}"/></td>
 								<td><h:outputText value="#{book.title}"/></td>
-								<td><h:outputText value="#{book.author}"/></td>
-								<td><h:outputText value="#{book.description}"/></td>
 								<td><h:outputText value="#{book.price} &#8364;"/></td>
+								<td><h:outputText value="#{book.stock}"/></td>
+								<td><h:inputText value="#{controller.checkMap[book]}"/></td>
 							</tr>
 						</ui:repeat>
-						<h:commandButton value="submit" action ="#{controller.addProcess}"/>
-						<h:commandButton value="Reset" type="reset"/>
-					</h:form>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+				<h:commandButton value="Add" action ="#{controller.addProcess}"/>
+				<h:commandButton value="Reset" type="reset"/>
+			</h:form>
 		</article>
 	</section>
 	<footer>

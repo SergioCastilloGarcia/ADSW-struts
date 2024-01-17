@@ -33,17 +33,23 @@
 					<tr>
 						<th>Title</th>
 						<th>Number</th>
+						<th>Price By Unit</th>
 					</tr>
 				</thead>
-				<tbody>
-					<ui:repeat value="#{controller.shoppingCart.carrito}" var="book">
-						<tr>
-							<td>#{book.key}</td>
-							<td>#{book.value}</td>
-						</tr>
-					</ui:repeat>
-				</tbody>
+					<tbody>
+						<ui:repeat value="#{controller.shoppingCart.carrito}" var="carrito">
+							<tr>
+								<td><h:outputText value="#{carrito.key.title}"/></td>
+								<td><h:outputText value="#{carrito.value}"/></td>
+								<td><h:outputText value="#{carrito.key.price}"/>  &#8364;</td>
+							</tr>
+						</ui:repeat>
+					</tbody>
 			</table>
+			<h3>Price: <h:outputText value="#{controller.shoppingCart.price}" /> &#8364;</h3>
+			<h:form>
+				<h:commandButton value="Buy" action ="#{controller.buyProcess}"/>
+			</h:form>
 		</article>
 	</section>
 	<footer>
