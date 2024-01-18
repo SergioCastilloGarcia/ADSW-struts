@@ -6,6 +6,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.apache.logging.log4j.*;
 
@@ -42,7 +44,16 @@ public class BookManager implements BookManagerService {
 		
 		// We calculate the final price with the VAT value
 		for (Book b : books) {
+			FacesMessage msg;
 			b.setPrice(b.getBasePrice() * (1 + b.getVat().getValue()));
+			if(b.getStock()>=10) {
+				b.setPrice(b.getPrice() * (0.95));
+			    b.setMessage( "¡Oferta!");
+			}if(b.getStock()<=3) {
+				b.setPrice(b.getPrice() * (1.05));
+			    b.setMessage( "¡Últimas unidades!");
+			}
+
 		}
 		return books;
 	}

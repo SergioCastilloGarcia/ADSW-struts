@@ -4,6 +4,8 @@ public class UserBean {
 
 		private String login;
 		private String password;
+		private String dni;
+		private String name;
 		public String getLogin() {
 			return login;
 		}
@@ -15,6 +17,18 @@ public class UserBean {
 		}
 		public void setPassword(String password) {
 			this.password = password;
+		}
+		public String getDni() {
+			return dni;
+		}
+		public void setDni(String dni) {
+			this.dni = dni;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
 		}
 		@Override
 		public String toString() {

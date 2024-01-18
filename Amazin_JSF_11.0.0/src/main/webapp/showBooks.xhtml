@@ -27,6 +27,7 @@
 	</nav>
 	<section>
 		<article>
+			<h:form id="form">
 			<table>
 				<caption>Our catalog:</caption>
 				<thead>
@@ -44,13 +45,12 @@
 							<td>#{book.title}</td>
 							<td>#{book.author}</td>
 							<td>#{book.description}</td>
-							<td>#{book.price} &#8364;</td>
+							<td>#{book.price} &#8364; #{book.message}</td>
 							<td>#{book.stock}</td>
 						</tr>
 					</ui:repeat>
 				</tbody>
 			</table>
-			<h:form>
 				<li><h:commandLink value="Show Cart" action="#{controller.showCartAction}" /></li>
 				<li><h:commandLink value="Add books" action="#{controller.addBooksAction}" /></li>
 			</h:form>

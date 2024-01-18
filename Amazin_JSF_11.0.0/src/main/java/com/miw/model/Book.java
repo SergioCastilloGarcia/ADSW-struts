@@ -27,6 +27,8 @@ public class Book {
 	private VAT vat;
 	private double basePrice;
 	private int stock;
+	@Transient
+	private String message;
 	
 
 	@Transient
@@ -116,7 +118,13 @@ public class Book {
 	public void setBasePrice(double basePrice) {
 		this.basePrice = basePrice;
 	}
+	public String getMessage() {
+		return message;
+	}
 
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", author=" + author

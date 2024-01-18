@@ -16,8 +16,10 @@ import com.miw.business.bookmanager.BookManager;
 import com.miw.business.bookmanager.BookManagerService;
 import com.miw.model.Book;
 import com.miw.model.ShoppingCart;
+import com.miw.model.User;
 import com.miw.model.UserBean;
 import com.miw.presentation.book.BookManagerServiceHelper;
+import com.miw.presentation.user.UserManagerServiceHelper;
 
 @Named
 @SessionScoped
@@ -30,6 +32,8 @@ public class Controller implements Serializable{
 
 	@Inject
 	private BookManagerServiceHelper bookManagerServiceHelper = null;
+	@Inject
+	private UserManagerServiceHelper userManagerServiceHelper = null;
 	private ShoppingCart shoppingCart = new ShoppingCart();
 	private HashMap<Book, String>checkMap = new HashMap<Book, String>();
 	Logger logger = LogManager.getLogger(this.getClass());
@@ -53,22 +57,47 @@ public class Controller implements Serializable{
 	public String login() {
 		logger.debug("doing login with " + loginInfo);
 		FacesMessage msg;
-		if (loginInfo.getLogin().equals("admin") && loginInfo.getPassword().equals("amazin"))
-		{
-		    msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@ "+ loginInfo.getLogin(), loginInfo.getLogin());
-			FacesContext.getCurrentInstance().addMessage("welcome", msg);
-			return "success";
+		User userExist;
+		try {
+			userExist = userManagerServiceHelper.getUserByLoginAndPassword(loginInfo.getLogin(),loginInfo.getPassword());
+			if(userExist!=null) {
+				logger.debug("Loggin in!: " + loginInfo);
+				 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@ "+ loginInfo.getLogin(), loginInfo.getLogin());
+				FacesContext.getCurrentInstance().addMessage("welcome", msg);
+				return "success";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else
-		{
 			 msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error: Invalid credentials",
                      "Credentials are not valid");
 			 FacesContext.getCurrentInstance().addMessage(null, msg);
 
 			return "login-error";
-		}
 	}
+	public String register() {
+		FacesMessage msg;
+		User user;
+		try {
+			user = userManagerServiceHelper.registerUser(loginInfo.getLogin(), loginInfo.getDni(),
+					loginInfo.getName(),loginInfo.getPassword());
+			if (user!=null)
+			{
+			    msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@ "+ loginInfo.getLogin(), loginInfo.getLogin());
+				FacesContext.getCurrentInstance().addMessage("welcome", msg);
+				return "success";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al registrarse",
+                     "Credentials are not valid");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 
+		return "register-error";
+	}
 	public String showBooksAction() {
 		logger.debug("Redirecting to showBooks view with success");
 		// At this point we interact with the model...
@@ -83,6 +112,9 @@ public class Controller implements Serializable{
 		return "success";
 	}public String showCartAction() {
 		logger.debug("Redirecting to showCart view");
+		return "success";
+	}public String showRegisterAction() {
+		logger.debug("Redirecting to register view");
 		return "success";
 	}
 	public String startAction() {

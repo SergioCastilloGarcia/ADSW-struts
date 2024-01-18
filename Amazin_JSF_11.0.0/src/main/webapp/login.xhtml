@@ -28,7 +28,7 @@
 				<h:messages style="color:red;margin:8px;" />
 				<h:inputText id="loginInput" value="#{controller.loginInfo.login}"
 					label="login">
-					<f:validateLength minimum="5" maximum="8" />
+					<f:validateLength minimum="5" maximum="15" />
 					<f:valueChangeListener
 						type="com.miw.presentation.listeners.LoginFieldListener" />
 				</h:inputText>
@@ -38,6 +38,8 @@
 				<h:commandButton value="submit" action="#{controller.login}" />
 				<h:message for="loginInput" style="color:red" />
 				<h:message for="passwordInput" style="color:red" />
+				<h:commandLink value="Register"
+					action="#{controller.showRegisterAction}" />
 			</h:form>
 		</article>
 	</section>
