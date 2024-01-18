@@ -29,7 +29,8 @@
 			<to-view-id>/register.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-		<navigation-rule>
+	
+	<navigation-rule>
 		<from-view-id>/register.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{controller.register}</from-action>
@@ -63,6 +64,11 @@
 			<from-outcome>success</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{controller.logout}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 	<navigation-rule>
@@ -82,6 +88,11 @@
 			<from-outcome>success</from-outcome>
 			<to-view-id>/showCart.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{controller.logout}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 	<navigation-rule>
@@ -90,6 +101,11 @@
 			<from-action>#{controller.startAction}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{controller.logout}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
@@ -105,6 +121,11 @@
 			<from-outcome>error</from-outcome>
 			<to-view-id>/addBooks.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{controller.logout}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 	<navigation-rule>
@@ -118,6 +139,11 @@
 			<from-action>#{controller.buyProcess}</from-action>
 			<from-outcome>error</from-outcome>
 			<to-view-id>/showCart.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{controller.logout}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	

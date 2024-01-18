@@ -116,6 +116,9 @@ public class Controller implements Serializable{
 	}public String showRegisterAction() {
 		logger.debug("Redirecting to register view");
 		return "success";
+	}public String logout() {
+		logger.debug("Redirecting to login view");
+		return "success";
 	}
 	public String startAction() {
 		return "success";
