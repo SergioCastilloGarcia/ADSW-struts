@@ -8,18 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.action.ApplicationAware;
 import org.apache.struts2.action.ServletRequestAware;
 import org.apache.struts2.action.SessionAware;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
-import com.miw.presentation.book.BookManagerServiceHelper;
 import com.miw.presentation.buy.BuyManagerServiceHelper;
 import com.miw.presentation.user.UserManagerServiceHelper;
 import com.miw.util.BuyConstants;
 import com.miw.util.Constants;
 import com.opensymphony.xwork2.ActionSupport;
-import com.miw.model.Book;
 import com.miw.model.Buy;
 import com.miw.model.LoginInfo;
 import com.miw.model.User;
@@ -33,7 +30,6 @@ public class ShowBuysAction extends ActionSupport implements ServletRequestAware
 	Logger logger = LogManager.getLogger(this.getClass());
 	HttpServletRequest request = null;
 	private Map<String, Object> session = null;
-    private static final String BOOKS_LIST = "booklist";
 
 	public String execute() {
 		logger.debug("Executing ShowBooksCommand");

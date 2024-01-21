@@ -72,7 +72,6 @@ public class BuyDAO implements BuyDataService  {
 			resultList = em.createQuery(jpql, Buy.class)
 		              .setParameter("user", user)
 		              .getResultList();
-			System.out.println(resultList.size());
 			logger.debug("Result list: "+ resultList.toString());
 			for (Buy next : resultList) {
 				logger.debug("next buy: " + next);

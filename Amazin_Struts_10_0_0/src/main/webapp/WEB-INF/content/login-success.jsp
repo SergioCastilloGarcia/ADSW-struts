@@ -24,7 +24,8 @@
 		<article id="a01">
 			<label class="mytitle">Choose an option:</label><br /> 
 			<a href="show-books.action">Show Catalog</a><br /> 
-			<a href="show-special-offer.action">Show Special Offers!</a> 
+			<a href="show-special-offer.action">Show Special Offers!</a><br /> 
+			<a href="show-buys.action">Ver compras</a><br /> 
 		</article>
 	</section>
 	<footer>
